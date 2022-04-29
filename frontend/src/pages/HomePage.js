@@ -1,7 +1,9 @@
+import CourseList from "../components/CourseList"
+
 const HomePage = () => {
   return (
-    <div className="mt-20 max-w-lg mx-auto">
-      <h1 className="text-3xl">This is your home</h1>
+    <div className="mt-20 max-w-4xl mx-auto">
+      <CourseList />
     </div>
   )
 }
