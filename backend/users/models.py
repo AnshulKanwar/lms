@@ -72,4 +72,4 @@ class Student(models.Model):
     )
 
     def __str__(self) -> str:
-        return f'{self.first_name}'
+        return f'{self.user.first_name}'
