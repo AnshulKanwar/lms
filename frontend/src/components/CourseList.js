@@ -22,9 +22,9 @@ const CourseList = () => {
   }, [authTokens.access]);
 
   return (
-    <div>
+    <div className="px-5">
       <h1 className="text-3xl font-semibold mb-10">Your Courses</h1>
-      <div className="grid grid-cols-2 gap-x-20 gap-y-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         {courses.map((course) => (
           <div className="bg-white p-4 rounded-md hover:shadow-md">
             <div className="text-sm text-slate-400">

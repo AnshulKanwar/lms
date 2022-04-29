@@ -7,7 +7,7 @@ import PrivateRoute from "./utils/PrivateRoute";
 
 function App() {
   return (
-    <div className="App min-h-screen bg-[#F0F1F4] text-slate-600">
+    <div className="App min-h-screen bg-[#F0F1F4] text-slate-600 pb-20">
       <BrowserRouter>
         <AuthProvider>
           <Navbar />

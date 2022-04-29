@@ -8,7 +8,7 @@ const Navbar = () => {
   const { user, logoutUser } = useContext(AuthContext);
 
   return (
-    <div className="bg-sky-800 text-slate-200 px-20 py-6">
+    <div className="bg-sky-800 text-slate-200 px-8 sm:px-20 py-6">
       <div className="flex justify-between items-center">
         <h1 className="text-3xl font-semibold">
           <Link to="/">LMS</Link>
