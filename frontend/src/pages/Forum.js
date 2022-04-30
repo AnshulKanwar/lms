@@ -18,7 +18,7 @@ const Forum = () => {
     <Layout title="Forum">
       <div className="flex flex-col gap-y-10">
         {posts.map((post) => (
-          <PostListItem post={post} />
+          <PostListItem key={post.id} post={post} />
         ))}
       </div>
     </Layout>

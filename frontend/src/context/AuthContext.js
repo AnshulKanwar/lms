@@ -10,10 +10,10 @@ export default AuthContext;
 export const AuthProvider = ({ children }) => {
   const storedAuthTokens = localStorage.getItem("authTokens");
 
-  const [authTokens, setAuthTokens] = useState(
+  const [authTokens, setAuthTokens] = useState(() =>
     storedAuthTokens ? JSON.parse(storedAuthTokens) : null
   );
-  const [user, setUser] = useState(
+  const [user, setUser] = useState(() =>
     storedAuthTokens ? jwtDecode(storedAuthTokens) : null
   );
 

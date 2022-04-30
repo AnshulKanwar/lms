@@ -21,7 +21,7 @@ const TimeTableList = () => {
       <h1 className="text-xl font-semibold mb-3">Upcoming for you</h1>
       <div className="flex flex-col gap-y-3">
         {timeTable.map((cls) => (
-          <ClassListItem cls={cls} />
+          <ClassListItem key={cls.id} cls={cls} />
         ))}
       </div>
     </div>

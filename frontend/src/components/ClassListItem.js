@@ -1,9 +1,7 @@
 import { FiClock } from "react-icons/fi";
+import { formatTime } from "../utils/helpers";
 
 const ClassListItem = ({ cls }) => {
-  const formatTime = (time) => {
-    return cls.start_time.split(":").slice(0, 2).join(":");
-  };
 
   return (
     <div className="bg-white rounded-md px-4 py-2">

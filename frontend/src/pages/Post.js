@@ -1,26 +1,53 @@
+import { useContext, useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { formatDistanceToNow } from "date-fns";
-import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+
+import Comment from "../components/Comment";
 import Layout from "../components/Layout";
+import AuthContext from "../context/AuthContext";
 
 const Post = () => {
   const [post, setPost] = useState(null);
+  const [comments, setComments] = useState([]);
+  const [comment, setComment] = useState("");
+
+  const { user } = useContext(AuthContext);
 
   const params = useParams();
+
+  const addComment = (e) => {
+    e.preventDefault();
+    console.log({
+      text: comment,
+      user: user.id,
+    });
+    axios
+      .post(`/api/forum/${params.id}/comment`, {
+        text: comment,
+        user: user.user_id,
+      })
+      .then((res) => {
+        console.log(res);
+        setComment("");
+        setComments(prevComment => [res.data].concat(prevComment))
+      })
+      .catch((err) => alert(err));
+  };
 
   useEffect(() => {
     axios
       .get(`/api/forum/${params.id}`)
-      .then((res) => setPost(res.data))
+      .then((res) => {
+        setPost(res.data);
+        setComments(res.data.comment_set);
+      })
       .catch((err) => alert(err));
   }, [params]);
 
   if (!post) {
     return null;
   }
-
-  console.log(post);
 
   return (
     <Layout>
@@ -39,11 +66,16 @@ const Post = () => {
           <p>{post.text}</p>
         </div>
         <div className="bg-white rounded-md p-5">
-          <form>
+          <form onSubmit={addComment}>
             <label htmlFor="comment" className="hidden">
               Write a Comment
             </label>
-            <textarea className="w-full" rows="5"></textarea>
+            <textarea
+              className="w-full"
+              rows="3"
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
+            />
             <div className="flex justify-end">
               <input
                 type="submit"
@@ -54,18 +86,11 @@ const Post = () => {
           </form>
         </div>
         <div className="bg-white rounded-md p-5">
-          {post.comment_set.map((comment) => (
-            <div>
-              <span className="flex gap-x-2 text-sm text-slate-500 mb-1">
-                <Link to={`/${comment.user.enrollment_number}</span>}`}>
-                  {comment.user.first_name}
-                </Link>
-                <p> . </p>
-                <p>{formatDistanceToNow(new Date(comment.date_posted))} ago</p>
-              </span>
-              <h1>{comment.text}</h1>
-            </div>
-          ))}
+          <div className="flex flex-col gap-y-5">
+            {comments.map((comment) => (
+              <Comment key={comment.id} comment={comment} />
+            ))}
+          </div>
         </div>
       </div>
     </Layout>

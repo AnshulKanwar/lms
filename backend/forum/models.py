@@ -9,6 +9,9 @@ class Post(models.Model):
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user")
 
+    class Meta:
+        ordering = ['date_posted']
+
     def __str__(self) -> str:
         return f'{self.title[:40]}{"..." if (len(self.title) > 40) else ""}'
 
@@ -19,5 +22,8 @@ class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
 
+    class Meta:
+        ordering = ['-date_posted']
+
     def __str__(self) -> str:
-        return f'{self.text[:40]}{"..." if (len(self.text) > 40) else ""} by {self.user}'
+        return f'{self.text[:40]}{"..." if (len(self.text) > 40) else ""} by {self.user.first_name}'
