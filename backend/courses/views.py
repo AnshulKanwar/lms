@@ -7,6 +7,7 @@ from .serializers import CourseSerializer
 
 from users.models import Student
 
+
 @api_view(['GET', 'POST'])
 @permission_classes([IsAuthenticated])
 def courseList(request):

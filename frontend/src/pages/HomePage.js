@@ -1,10 +1,11 @@
 import CourseList from "../components/CourseList"
+import Layout from "../components/Layout"
 
 const HomePage = () => {
   return (
-    <div className="mt-20 max-w-4xl mx-auto">
+    <Layout title="Dashboard">
       <CourseList />
-    </div>
+    </Layout>
   )
 }
 

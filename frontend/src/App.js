@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import { AuthProvider } from "./context/AuthContext";
+import Forum from "./pages/Forum";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import PrivateRoute from "./utils/PrivateRoute";
@@ -18,6 +19,14 @@ function App() {
               element={
                 <PrivateRoute>
                   <HomePage />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/forum"
+              element={
+                <PrivateRoute>
+                  <Forum />
                 </PrivateRoute>
               }
             />
