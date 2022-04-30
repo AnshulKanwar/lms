@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
+import { capitalize } from "../utils/helpers"
 
 import { BiUserCircle } from "react-icons/bi";
 
@@ -28,11 +29,10 @@ const Navbar = () => {
         <span>
           {user ? (
             <span className="flex gap-x-2">
-              <span className="flex items-center gap-x-2 cursor-pointer hover:underline">
+              <Link to={`/${user.enrollment_number}`} className="flex items-center gap-x-2 cursor-pointer hover:underline">
                 <BiUserCircle className="text-2xl" />
-                {user.first_name.charAt(0).toUpperCase() +
-                  user.first_name.slice(1)}
-              </span>
+                {capitalize(user.first_name)}
+              </Link>
               <span>|</span>
               <button className="hover:underline" onClick={logoutUser}>
                 Logout

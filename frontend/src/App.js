@@ -1,9 +1,11 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import { AuthProvider } from "./context/AuthContext";
+import NotFoundPage from "./pages/404";
 import Forum from "./pages/Forum";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
+import UserProfile from "./pages/UserProfile";
 import PrivateRoute from "./utils/PrivateRoute";
 
 function App() {
@@ -30,6 +32,15 @@ function App() {
                 </PrivateRoute>
               }
             />
+            <Route
+              path="/:user"
+              element={
+                <PrivateRoute>
+                  <UserProfile />
+                </PrivateRoute>
+              }
+            />
+            <Route path="*" element={<NotFoundPage />}/>
           </Routes>
         </AuthProvider>
       </BrowserRouter>
