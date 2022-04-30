@@ -3,6 +3,8 @@ from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import AbstractUser
 from django.utils.translation import gettext_lazy as _
 
+from base.models import Batch
+
 class UserManager(BaseUserManager):
     def create_user(self, enrollment_number, first_name, password, **extra_fields):
         if not enrollment_number:
@@ -53,23 +55,7 @@ class User(AbstractUser):
 
 class Student(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-
-    CS9 = 'CS9'
-    CS10 = 'CS10'
-    CS11 = 'CS11'
-    CS12 = 'CS12'
-
-    BATCH_CHOICES = (
-        (CS9, 'CS9'),
-        (CS10, 'CS10'),
-        (CS11, 'CS11'),
-        (CS12, 'CS12'),
-    )
-
-    batch = models.CharField(
-        max_length=4,
-        choices=BATCH_CHOICES
-    )
+    batch = models.ForeignKey(Batch, on_delete=models.SET_NULL, null=True)
 
     def __str__(self) -> str:
         return f'{self.user.first_name}'
