@@ -5,6 +5,7 @@ import NotFoundPage from "./pages/404";
 import Forum from "./pages/Forum";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
+import Post from "./pages/Post";
 import UserProfile from "./pages/UserProfile";
 import PrivateRoute from "./utils/PrivateRoute";
 
@@ -29,6 +30,14 @@ function App() {
               element={
                 <PrivateRoute>
                   <Forum />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/forum/:id"
+              element={
+                <PrivateRoute>
+                  <Post />
                 </PrivateRoute>
               }
             />

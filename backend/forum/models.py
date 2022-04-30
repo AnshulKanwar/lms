@@ -11,3 +11,13 @@ class Post(models.Model):
 
     def __str__(self) -> str:
         return f'{self.title[:40]}{"..." if (len(self.title) > 40) else ""}'
+
+class Comment(models.Model):
+    text = models.TextField(max_length=500)
+    date_posted = models.DateTimeField(auto_now_add=True)
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+
+    def __str__(self) -> str:
+        return f'{self.text[:40]}{"..." if (len(self.text) > 40) else ""} by {self.user}'
