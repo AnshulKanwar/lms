@@ -7,7 +7,7 @@ const ClassListItem = ({ cls }) => {
 
   return (
     <div className="bg-white rounded-md px-4 py-2">
-      <div className="flex flex-col gap-y-1">
+      <div className="flex flex-col gap-y-3">
         <div className="text-sm text-slate-500 flex justify-between">
           <span>{cls.course.code}</span>
           <span className="flex gap-x-1 items-center">

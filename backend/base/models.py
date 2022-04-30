@@ -15,22 +15,22 @@ class Batch(models.Model):
 class TimeTable(models.Model):
     course = models.ForeignKey('courses.course', on_delete=models.CASCADE)
 
+    SUNDAY = 0
     MONDAY = 1
     TUESDAY = 2
     WEDNESDAY = 3
     THURSDAY = 4
     FRIDAY = 5
     SATURDAY = 6
-    SUNDAY = 7
 
     day_choices = [
+        (SUNDAY, 'Sunday'),
         (MONDAY, 'Monday'),
         (TUESDAY, 'Tuesday'),
         (WEDNESDAY, 'Wednesday'),
         (THURSDAY, 'Thursday'),
         (FRIDAY, 'Friday'),
         (SATURDAY, 'Saturday'),
-        (SUNDAY, 'Sunday'),
     ]
 
     day = models.PositiveSmallIntegerField(
@@ -63,3 +63,11 @@ class TimeTable(models.Model):
 
     def __str__(self) -> str:
         return f'{self.course} {self.class_type} on {self.day_choices[self.day - 1][1]} at {self.start_time}'
+
+class Announcements(models.Model):
+    title = models.CharField(max_length=100, blank=False)
+    text = models.TextField(max_length=300)
+    date_posted = models.DateField(auto_now_add=True)
+
+    def __str__(self) -> str:
+        return self.title 
