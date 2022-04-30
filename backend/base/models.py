@@ -1,7 +1,7 @@
 from django.db import models
 
 class Batch(models.Model):
-    batch = models.CharField(
+    name = models.CharField(
         max_length=4,
         blank=False
     )
@@ -10,38 +10,40 @@ class Batch(models.Model):
         verbose_name_plural = "batches"
 
     def __str__(self) -> str:
-        return self.batch 
+        return self.name 
 
 class TimeTable(models.Model):
     course = models.ForeignKey('courses.course', on_delete=models.CASCADE)
 
-    SUNDAY = 'SUN'
-    MONDAY = 'MON'
-    TUESDAY = 'TUE'
-    WEDNESDAY = 'WED'
-    THURSDAY = 'THU'
-    FRIDAY = 'FRI'
-    SATURDAY = 'SAT'
+    MONDAY = 1
+    TUESDAY = 2
+    WEDNESDAY = 3
+    THURSDAY = 4
+    FRIDAY = 5
+    SATURDAY = 6
+    SUNDAY = 7
 
     day_choices = [
-        (SUNDAY, 'Sunday'),
         (MONDAY, 'Monday'),
         (TUESDAY, 'Tuesday'),
         (WEDNESDAY, 'Wednesday'),
         (THURSDAY, 'Thursday'),
         (FRIDAY, 'Friday'),
         (SATURDAY, 'Saturday'),
+        (SUNDAY, 'Sunday'),
     ]
 
-    day = models.CharField(
-        max_length=3,
-        choices=day_choices
+    day = models.PositiveSmallIntegerField(
+        choices=day_choices,
+        blank=False
     )
 
     start_time = models.TimeField()
     end_time = models.TimeField()
 
     batch = models.ManyToManyField(Batch)
+
+    teacher = models.OneToOneField('users.Teacher', on_delete=models.SET_NULL, null=True)
 
     LECTURE = 'lecture'
     LAB = 'lab'
@@ -60,4 +62,4 @@ class TimeTable(models.Model):
         verbose_name_plural = "time table"
 
     def __str__(self) -> str:
-        return f'{self.course} {self.class_type} on {self.day} at {self.start_time}'
+        return f'{self.course} {self.class_type} on {self.day_choices[self.day - 1][1]} at {self.start_time}'

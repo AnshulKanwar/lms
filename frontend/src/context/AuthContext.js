@@ -24,7 +24,7 @@ export const AuthProvider = ({ children }) => {
   const loginUser = (e) => {
     e.preventDefault();
     axios
-      .post("/api/token/", {
+      .post("/api/users/token/", {
         enrollment_number: e.target.enrollment_number.value,
         password: e.target.password.value,
       })
@@ -56,7 +56,7 @@ export const AuthProvider = ({ children }) => {
 
   const updateToken = useCallback(() => {
     axios
-      .post("/api/token/refresh/", {
+      .post("/api/users/token/refresh/", {
         refresh: authTokens?.refresh,
       })
       .then((res) => {

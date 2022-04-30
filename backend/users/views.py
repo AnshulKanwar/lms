@@ -12,9 +12,9 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod
     def get_token(cls, user):
         token = super().get_token(user)
-
         token['enrollment_number'] = user.enrollment_number
         token['first_name'] = user.first_name
+        token['batch'] = user.student.batch.name
 
         return token
 

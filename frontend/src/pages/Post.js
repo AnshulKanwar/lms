@@ -6,7 +6,6 @@ import Layout from "../components/Layout";
 
 const Post = () => {
   const [post, setPost] = useState(null);
-  const [comments, setComments] = useState([]);
 
   const params = useParams();
 

@@ -15,42 +15,44 @@ function App() {
       <BrowserRouter>
         <AuthProvider>
           <Navbar />
-          <Routes>
-            <Route path="/login" element={<LoginPage />} />
-            <Route
-              path="/"
-              element={
-                <PrivateRoute>
-                  <HomePage />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/forum"
-              element={
-                <PrivateRoute>
-                  <Forum />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/forum/:id"
-              element={
-                <PrivateRoute>
-                  <Post />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/:user"
-              element={
-                <PrivateRoute>
-                  <UserProfile />
-                </PrivateRoute>
-              }
-            />
-            <Route path="*" element={<NotFoundPage />}/>
-          </Routes>
+          <div className="max-w-6xl mx-auto">
+            <Routes>
+              <Route path="/login" element={<LoginPage />} />
+              <Route
+                path="/"
+                element={
+                  <PrivateRoute>
+                    <HomePage />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/forum"
+                element={
+                  <PrivateRoute>
+                    <Forum />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/forum/:id"
+                element={
+                  <PrivateRoute>
+                    <Post />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/:user"
+                element={
+                  <PrivateRoute>
+                    <UserProfile />
+                  </PrivateRoute>
+                }
+              />
+              <Route path="*" element={<NotFoundPage />} />
+            </Routes>
+          </div>
         </AuthProvider>
       </BrowserRouter>
     </div>

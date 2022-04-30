@@ -32,7 +32,7 @@ class User(AbstractUser):
     enrollment_number = models.CharField(max_length=9, unique=True)
 
     first_name = models.CharField(max_length=50, blank=False)
-    last_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50, blank=True)
 
     STUDENT = 'S'
     TEACHER = 'T'
@@ -56,6 +56,12 @@ class User(AbstractUser):
 class Student(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     batch = models.ForeignKey(Batch, on_delete=models.SET_NULL, null=True)
+
+    def __str__(self) -> str:
+        return f'{self.user.first_name}'
+
+class Teacher(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
 
     def __str__(self) -> str:
         return f'{self.user.first_name}'
