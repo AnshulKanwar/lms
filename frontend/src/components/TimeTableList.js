@@ -9,12 +9,18 @@ const TimeTableList = () => {
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
-    const day = new Date().getDay();
+    if (user) {
+      const day = new Date().getDay();
 
-    axios
-      .get(`/api/time-table/${user.batch}`, { params: { day } })
-      .then((res) => setTimeTable(res.data));
+      axios
+        .get(`/api/time-table/${user.batch}`, { params: { day } })
+        .then((res) => setTimeTable(res.data));
+    }
   }, [user]);
+
+  if (!user) {
+    return null;
+  }
 
   return (
     <div>

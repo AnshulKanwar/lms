@@ -19,19 +19,14 @@ const Post = () => {
 
   const addComment = (e) => {
     e.preventDefault();
-    console.log({
-      text: comment,
-      user: user.id,
-    });
     axios
       .post(`/api/forum/${params.id}/comment`, {
         text: comment,
         user: user.user_id,
       })
       .then((res) => {
-        console.log(res);
         setComment("");
-        setComments(prevComment => [res.data].concat(prevComment))
+        setComments((prevComment) => [res.data].concat(prevComment));
       })
       .catch((err) => alert(err));
   };
@@ -52,6 +47,8 @@ const Post = () => {
 
   let date_posted_formatted = formatDistanceToNow(new Date(post.date_posted));
   date_posted_formatted = capitalize(date_posted_formatted);
+
+  console.log(comments);
 
   return (
     <Layout>
@@ -75,6 +72,7 @@ const Post = () => {
               Write a Comment
             </label>
             <textarea
+              id="comment"
               className="w-full"
               rows="3"
               value={comment}
@@ -89,13 +87,15 @@ const Post = () => {
             </div>
           </form>
         </div>
-        <div className="bg-white rounded-md p-5">
-          <div className="flex flex-col gap-y-5">
-            {comments.map((comment) => (
-              <Comment key={comment.id} comment={comment} />
-            ))}
+        {comments.length > 0 && (
+          <div className="bg-white rounded-md p-5">
+            <div className="flex flex-col gap-y-5">
+              {comments.map((comment) => (
+                <Comment key={comment.id} comment={comment} />
+              ))}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </Layout>
   );

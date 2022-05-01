@@ -16,7 +16,7 @@ const LoginPage = () => {
               type="text"
               name="enrollment_number"
               placeholder="Enter Enrollment Number"
-              className="form-inpu rounded w-full"
+              className="form-input rounded w-full"
             />
           </div>
           <div className="mb-6">
@@ -27,7 +27,7 @@ const LoginPage = () => {
               type="password"
               name="password"
               placeholder="Enter password"
-              className="form-inpu rounded w-full"
+              className="form-input rounded w-full"
             />
           </div>
           <button

@@ -17,7 +17,7 @@ def postsList(request):
         post = Post.objects.create(
             title=data['title'],
             text=data['text'],
-            user_id=data['user_id']
+            user_id=data['user']
         )
         serializer = PostSerializer(post)
 

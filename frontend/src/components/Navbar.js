@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
-import { capitalize } from "../utils/helpers"
+import { capitalize } from "../utils/helpers";
 
 import { BiUserCircle } from "react-icons/bi";
 
@@ -20,16 +20,19 @@ const Navbar = () => {
               <Link to="/" className="hover:underline">
                 Home
               </Link>
-              <Link to="/forum" className="hover:underline">
-                Forum
-              </Link>
             </>
           )}
+          <Link to="/forum" className="hover:underline">
+            Forum
+          </Link>
         </div>
         <span>
           {user ? (
             <span className="flex gap-x-2">
-              <Link to={`/${user.enrollment_number}`} className="flex items-center gap-x-2 cursor-pointer hover:underline">
+              <Link
+                to={`/${user.enrollment_number}`}
+                className="flex items-center gap-x-2 cursor-pointer hover:underline"
+              >
                 <BiUserCircle className="text-2xl" />
                 {capitalize(user.first_name)}
               </Link>
