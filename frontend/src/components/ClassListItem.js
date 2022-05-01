@@ -14,7 +14,7 @@ const ClassListItem = ({ cls }) => {
           </span>
         </div>
         <h1 className="text-md font-semibold">{cls.course.name}</h1>
-        <p>{cls.teacher.user.first_name}</p>
+        <p>{cls.teacher.user.first_name} {cls.teacher.user.last_name}</p>
       </div>
     </div>
   );

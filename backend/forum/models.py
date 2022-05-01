@@ -10,7 +10,7 @@ class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user")
 
     class Meta:
-        ordering = ['date_posted']
+        ordering = ['-date_posted']
 
     def __str__(self) -> str:
         return f'{self.title[:40]}{"..." if (len(self.title) > 40) else ""}'

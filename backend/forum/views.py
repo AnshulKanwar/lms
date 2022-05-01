@@ -5,12 +5,23 @@ from .models import Post, Comment
 from .serializers import PostSerializer, CommentSerializer
 
 
-@api_view(['GET'])
+@api_view(['GET', 'POST'])
 def postsList(request):
-    posts = Post.objects.all()
-    serializer = PostSerializer(
-        posts, context={'request': request}, many=True)
-    return Response(serializer.data)
+    if request.method == 'GET':
+        posts = Post.objects.all()
+        serializer = PostSerializer(
+            posts, context={'request': request}, many=True)
+        return Response(serializer.data)
+    elif request.method == 'POST':
+        data = request.data
+        post = Post.objects.create(
+            title=data['title'],
+            text=data['text'],
+            user_id=data['user_id']
+        )
+        serializer = PostSerializer(post)
+
+        return Response(serializer.data)
 
 
 @api_view(['GET'])
@@ -19,10 +30,10 @@ def postDetail(request, pk):
     postSerializer = PostSerializer(post)
     return Response(postSerializer.data)
 
+
 @api_view(['POST'])
 def addComment(request, post_id):
     data = request.data
-    print(data)
     comment = Comment.objects.create(
         text=data['text'],
         user_id=data['user'],

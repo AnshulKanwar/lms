@@ -6,6 +6,7 @@ import { formatDistanceToNow } from "date-fns";
 import Comment from "../components/Comment";
 import Layout from "../components/Layout";
 import AuthContext from "../context/AuthContext";
+import { capitalize } from "../utils/helpers";
 
 const Post = () => {
   const [post, setPost] = useState(null);
@@ -49,12 +50,15 @@ const Post = () => {
     return null;
   }
 
+  let date_posted_formatted = formatDistanceToNow(new Date(post.date_posted));
+  date_posted_formatted = capitalize(date_posted_formatted);
+
   return (
     <Layout>
       <div className="flex flex-col gap-y-6">
         <div className="bg-white rounded-md p-5">
           <span className="text-sm text-slate-500">
-            {formatDistanceToNow(new Date(post.date_posted))} ago by{" "}
+            {date_posted_formatted} ago by{" "}
             <Link
               to={`/${post.user.enrollment_number}`}
               className="hover:underline"
