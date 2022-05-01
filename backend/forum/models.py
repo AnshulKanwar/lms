@@ -16,7 +16,7 @@ class Post(models.Model):
         return f'{self.title[:40]}{"..." if (len(self.title) > 40) else ""}'
 
 class Comment(models.Model):
-    text = models.TextField(max_length=500)
+    text = models.TextField(max_length=500, blank=False)
     date_posted = models.DateTimeField(auto_now_add=True)
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)

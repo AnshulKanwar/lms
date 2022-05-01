@@ -48,8 +48,6 @@ const Post = () => {
   let date_posted_formatted = formatDistanceToNow(new Date(post.date_posted));
   date_posted_formatted = capitalize(date_posted_formatted);
 
-  console.log(comments);
-
   return (
     <Layout>
       <div className="flex flex-col gap-y-6">
