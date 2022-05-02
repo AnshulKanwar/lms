@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { formatDistanceToNow } from "date-fns";
+import { BiLike } from "react-icons/bi";
 
 import Comment from "../components/Comment";
 import Layout from "../components/Layout";
@@ -63,6 +64,12 @@ const Post = () => {
           </span>
           <h1 className="text-lg font-semibold">{post.title}</h1>
           <p>{post.text}</p>
+        <div className="flex items-center gap-x-2">
+          <span>
+            <BiLike className="text-xl"/>
+          </span>
+          {post.likes}
+        </div>
         </div>
         <div className="bg-white rounded-md p-5">
           <form onSubmit={addComment}>

@@ -7,7 +7,7 @@ from .models import User, Student, Teacher
 class CustomUserAdmin(UserAdmin):
     model = User
     list_display = ('enrollment_number', 'first_name', 'is_staff', 'is_active',)
-    list_filter = ('enrollment_number', 'is_staff', 'is_active',)
+    list_filter = ('is_staff', 'is_active',)
     fieldsets = (
         (None, {'fields': ('enrollment_number', ('first_name', 'last_name'), 'password', 'user_type')}),
         ('Permissions', {'fields': ('is_staff', 'is_active')}),

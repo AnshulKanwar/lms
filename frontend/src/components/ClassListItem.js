@@ -2,7 +2,6 @@ import { FiClock } from "react-icons/fi";
 import { formatTime } from "../utils/helpers";
 
 const ClassListItem = ({ cls }) => {
-
   return (
     <div className="bg-white rounded-md px-4 py-2">
       <div className="flex flex-col gap-y-3">
@@ -14,7 +13,9 @@ const ClassListItem = ({ cls }) => {
           </span>
         </div>
         <h1 className="text-md font-semibold">{cls.course.name}</h1>
-        <p>{cls.teacher.user.first_name} {cls.teacher.user.last_name}</p>
+        <p>
+          {cls.teacher.user.first_name} {cls.teacher.user.last_name}
+        </p>
       </div>
     </div>
   );

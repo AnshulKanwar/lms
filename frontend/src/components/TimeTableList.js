@@ -18,7 +18,7 @@ const TimeTableList = () => {
     }
   }, [user]);
 
-  if (!user) {
+  if (!user || timeTable.length === 0) {
     return null;
   }
 

@@ -1,10 +1,15 @@
 import { formatDistanceToNow } from "date-fns";
 import { Link } from "react-router-dom";
+import { BiLike } from "react-icons/bi";
 import { capitalize } from "../utils/helpers";
 
-const PostListItem = ({ post: { id, title, text, date_posted, user } }) => {
+const PostListItem = ({
+  post: { id, title, text, date_posted, user, likes },
+}) => {
   let date_posted_formatted = formatDistanceToNow(new Date(date_posted));
   date_posted_formatted = capitalize(date_posted_formatted);
+
+  console.log(likes);
 
   return (
     <Link to={`/forum/${id}`}>
@@ -16,7 +21,13 @@ const PostListItem = ({ post: { id, title, text, date_posted, user } }) => {
           </Link>
         </span>
         <h1 className="text-lg font-semibold mb-3">{title}</h1>
-        <p>{text}</p>
+        <p className="mb-3">{text}</p>
+        <div className="flex items-center gap-x-2">
+          <span>
+            <BiLike className="text-xl"/>
+          </span>
+          {likes}
+        </div>
       </div>
     </Link>
   );

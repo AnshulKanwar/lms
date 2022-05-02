@@ -2,6 +2,8 @@ from rest_framework import serializers
 
 from .models import User, Student, Teacher
 
+from base.serializers import BatchSerialzer
+
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
@@ -9,6 +11,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 class StudentSerializer(serializers.ModelSerializer):
     user = UserSerializer()
+    batch = BatchSerialzer()
     class Meta:
         model = Student
         fields = '__all__'

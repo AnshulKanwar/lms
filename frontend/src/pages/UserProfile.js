@@ -25,7 +25,7 @@ const UserProfile = () => {
       {loading ? null : (
         <div>
           <h1 className="text-lg font-semibold">{user.user.first_name}</h1>
-          <span>{user.batch}</span>
+          <span>{user.batch.name}</span>
         </div>
       )}
     </Layout>

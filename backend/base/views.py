@@ -2,7 +2,8 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
 from .models import Batch, TimeTable, Announcements
-from .serializers import TimeTableSerializer, AnnouncementsSerializer
+from .serializers import AnnouncementsSerializer
+from .timeTableSerialzer import TimeTableSerializer
 
 @api_view(['GET'])
 def timeTableList(request, batch):
