@@ -1,6 +1,5 @@
 from django.db import models
 
-
 class Batch(models.Model):
     name = models.CharField(
         max_length=4,
@@ -75,3 +74,18 @@ class Announcements(models.Model):
 
     def __str__(self) -> str:
         return self.title
+
+
+class Notifications(models.Model):
+    title = models.CharField(max_length=100, blank=False)
+    text = models.TextField(max_length=1000)
+    batch = models.ManyToManyField(Batch)
+    course = models.ForeignKey('courses.Course', on_delete=models.CASCADE)
+    isSeen = models.BooleanField(default=False)
+    date_posted = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-date_posted']
+
+    def __str__(self) -> str:
+        return f'{self.title}'

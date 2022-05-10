@@ -1,7 +1,6 @@
-from dataclasses import fields
 from django.contrib import admin
 
-from .models import Batch, TimeTable, Announcements
+from .models import Batch, Notifications, TimeTable, Announcements
 
 
 class CustomTimeTableAdmin(admin.ModelAdmin):
@@ -23,3 +22,4 @@ class CustomTimeTableAdmin(admin.ModelAdmin):
 admin.site.register(Batch)
 admin.site.register(TimeTable, CustomTimeTableAdmin)
 admin.site.register(Announcements)
+admin.site.register(Notifications)
