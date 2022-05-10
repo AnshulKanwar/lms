@@ -18,8 +18,6 @@ const UserProfile = () => {
       .catch((err) => alert(err));
   }, [params]);
 
-  console.log(user)
-
   return (
     <Layout title="Profile">
       {loading ? null : (

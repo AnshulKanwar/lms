@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { formatDistanceToNow } from "date-fns";
-import { BiLike } from "react-icons/bi";
+import { BiLike, BiDotsVerticalRounded } from "react-icons/bi";
 
 import Comment from "../components/Comment";
 import Layout from "../components/Layout";
@@ -53,23 +53,30 @@ const Post = () => {
     <Layout>
       <div className="flex flex-col gap-y-6">
         <div className="bg-white rounded-md p-5">
-          <span className="text-sm text-slate-500">
-            {date_posted_formatted} ago by{" "}
-            <Link
-              to={`/${post.user.enrollment_number}`}
-              className="hover:underline"
-            >
-              {post.user.first_name}
-            </Link>
-          </span>
+          <div className="flex justify-between">
+            <div className="text-sm text-slate-500">
+              {date_posted_formatted} ago by{" "}
+              <Link
+                to={`/${post.user.enrollment_number}`}
+                className="hover:underline"
+              >
+                {post.user.first_name}
+              </Link>
+            </div>
+            <div className="text-xl">
+              <span>
+                <BiDotsVerticalRounded />
+              </span>
+            </div>
+          </div>
           <h1 className="text-lg font-semibold">{post.title}</h1>
           <p>{post.text}</p>
-        <div className="flex items-center gap-x-2">
-          <span>
-            <BiLike className="text-xl"/>
-          </span>
-          {post.likes}
-        </div>
+          <div className="flex items-center gap-x-2">
+            <span>
+              <BiLike className="text-xl" />
+            </span>
+            {post.likes}
+          </div>
         </div>
         <div className="bg-white rounded-md p-5">
           <form onSubmit={addComment}>

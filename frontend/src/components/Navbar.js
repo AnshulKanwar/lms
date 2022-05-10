@@ -1,12 +1,14 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 import { capitalize } from "../utils/helpers";
 
-import { BiUserCircle } from "react-icons/bi";
+import { BiBell, BiUserCircle } from "react-icons/bi";
+import Notifications from "./Notifications";
 
 const Navbar = () => {
   const { user, logoutUser } = useContext(AuthContext);
+  const [notificationsIsOpen, setNotificationsIsOpen] = useState(false);
 
   return (
     <div className="bg-cyan-800 text-slate-200 px-8 sm:px-20 py-6">
@@ -26,7 +28,13 @@ const Navbar = () => {
             Forum
           </Link>
         </div>
-        <span>
+        <div className="flex gap-x-6">
+          <span className="flex items-center text-2xl relative">
+            <button onClick={() => setNotificationsIsOpen(true)}>
+              <BiBell />
+            </button>
+            {notificationsIsOpen && <Notifications setIsOpen={setNotificationsIsOpen}/>}
+          </span>
           {user ? (
             <span className="flex gap-x-2">
               <Link
@@ -44,7 +52,7 @@ const Navbar = () => {
           ) : (
             <Link to="/login">Login</Link>
           )}
-        </span>
+        </div>
       </div>
     </div>
   );
