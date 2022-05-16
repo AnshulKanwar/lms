@@ -67,7 +67,7 @@ class TimeTable(models.Model):
         return f'{self.course} {self.class_type} on {self.day_choices[self.day - 1][1]} at {self.start_time}'
 
 
-class Announcements(models.Model):
+class Announcement(models.Model):
     title = models.CharField(max_length=100, blank=False)
     text = models.TextField(max_length=300)
     date_posted = models.DateField(auto_now_add=True)
@@ -76,7 +76,7 @@ class Announcements(models.Model):
         return self.title
 
 
-class Notifications(models.Model):
+class Notification(models.Model):
     title = models.CharField(max_length=100, blank=False)
     text = models.TextField(max_length=1000)
     batch = models.ManyToManyField(Batch)
@@ -86,6 +86,7 @@ class Notifications(models.Model):
 
     class Meta:
         ordering = ['-date_posted']
+        verbose_name_plural = "notifications"
 
     def __str__(self) -> str:
         return f'{self.title}'

@@ -1,11 +1,11 @@
 from rest_framework.serializers import ModelSerializer
 
-from .models import Announcements, Batch, Notifications
+from .models import Announcement, Batch, Notification
 from courses.serializers import CourseSerializer
 
-class AnnouncementsSerializer(ModelSerializer):
+class AnnouncementSerializer(ModelSerializer):
     class Meta:
-        model = Announcements
+        model = Announcement
         fields = '__all__'
 
 
@@ -15,8 +15,8 @@ class BatchSerialzer(ModelSerializer):
         fields = '__all__'
 
 
-class NotificationsSerializer(ModelSerializer):
+class NotificationSerializer(ModelSerializer):
     course = CourseSerializer()
     class Meta:
-        model = Notifications
+        model = Notification
         fields = '__all__'

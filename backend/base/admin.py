@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Batch, Notifications, TimeTable, Announcements
+from .models import Batch, Notification, TimeTable, Announcement
 
 
 class CustomTimeTableAdmin(admin.ModelAdmin):
@@ -21,5 +21,5 @@ class CustomTimeTableAdmin(admin.ModelAdmin):
 
 admin.site.register(Batch)
 admin.site.register(TimeTable, CustomTimeTableAdmin)
-admin.site.register(Announcements)
-admin.site.register(Notifications)
+admin.site.register(Announcement)
+admin.site.register(Notification)

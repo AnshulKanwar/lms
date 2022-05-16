@@ -1,8 +1,8 @@
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
-from .models import Batch, Notifications, TimeTable, Announcements
-from .serializers import AnnouncementsSerializer, NotificationsSerializer
+from .models import Batch, Notification, TimeTable, Announcement
+from .serializers import AnnouncementSerializer, NotificationSerializer
 from .serializers2 import TimeTableSerializer
 
 
@@ -17,13 +17,13 @@ def timeTableList(request, batch):
 
 @api_view(['GET'])
 def announcementsList(request):
-    announcements = Announcements.objects.all()
-    serialzer = AnnouncementsSerializer(announcements, many=True)
+    announcements = Announcement.objects.all()
+    serialzer = AnnouncementSerializer(announcements, many=True)
     return Response(serialzer.data)
 
 
 @api_view(['GET'])
 def notificationsList(request):
-    notifications = Notifications.objects.all()
-    serialzer = NotificationsSerializer(notifications, many=True)
+    notifications = Notification.objects.all()
+    serialzer = NotificationSerializer(notifications, many=True)
     return Response(serialzer.data)
