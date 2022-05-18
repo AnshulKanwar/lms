@@ -17,7 +17,7 @@ const Notifications = ({ notifications, setIsOpen }) => {
           {notifications.map((notification) => (
             <div key={notification.id} className="py-2 border-b-2">
               <div
-                className={`px-3 py-4 flex flex-col gap-y-2 ${
+                className={`px-3 py-4 flex flex-col gap-y-1 ${
                   !notification.isSeen ? "bg-rose-200 rounded-md" : ""
                 }`}
               >
