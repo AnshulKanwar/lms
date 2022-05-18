@@ -9,8 +9,6 @@ const PostListItem = ({
   let date_posted_formatted = formatDistanceToNow(new Date(date_posted));
   date_posted_formatted = capitalize(date_posted_formatted);
 
-  console.log(likes);
-
   return (
     <Link to={`/forum/${id}`}>
       <div className="bg-white p-5 rounded-md hover:shadow-md">
