@@ -80,7 +80,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'lms.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
@@ -164,3 +163,5 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
+
+ALLOWED_HOSTS = ['*']
