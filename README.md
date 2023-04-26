@@ -18,8 +18,6 @@ source venv/bin/activate  # or whatever the equivalent command is on windows
 
 # install deps
 pip install -r requirements.txt
-pip3 install djangorestframework
-pip install djangorestframework-simplejwt
 
 # set a new SECRET_KEY
 export SECRET_KEY='python3 -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"'
